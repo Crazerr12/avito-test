@@ -1,4 +1,4 @@
-package ru.crazerr.avitotest.presentation.localTracks
+package ru.crazerr.avitotest.presentation.apiTracks
 
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
@@ -9,8 +9,8 @@ import ru.crazerr.avitotest.feature.baseTracks.BaseTracksViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class LocalTracksViewModel @Inject constructor(
-    private val trackRepository: TrackRepository,
+class ApiTracksViewModel @Inject constructor(
+    private val trackRepository: TrackRepository
 ) : BaseTracksViewModel() {
 
     init {
@@ -18,7 +18,7 @@ class LocalTracksViewModel @Inject constructor(
     }
 
     override fun getTracks() {
-        val tracks = trackRepository.getLocalTracks(searchQuery = state.value.searchQuery)
+        val tracks = trackRepository.getApiTracks(searchQuery = state.value.searchQuery)
             .cachedIn(viewModelScope)
 
         reduceState { copy(tracks = tracks) }

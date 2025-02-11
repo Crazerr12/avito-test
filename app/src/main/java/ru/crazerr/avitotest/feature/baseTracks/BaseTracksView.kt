@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -75,7 +74,7 @@ private fun TrackPagingColumn(
     val tracks = state.tracks.collectAsLazyPagingItems()
 
     PagingLazyColumn(
-        modifier = modifier.imePadding(),
+        modifier = modifier,
         loadStates = tracks.loadState,
         isEmpty = tracks.itemCount < 1,
         error = { title, description ->

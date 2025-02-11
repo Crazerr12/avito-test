@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ru.crazerr.avitotest.feature.baseTracks.BaseTracksView
+import ru.crazerr.avitotest.presentation.apiTracks.ApiTracksViewModel
 import ru.crazerr.avitotest.presentation.localTracks.LocalTracksViewModel
 
 @Composable
@@ -13,6 +14,6 @@ fun RootNavHost(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Destination.LocalTracks) {
         composable<Destination.LocalTracks> { BaseTracksView(viewModel = hiltViewModel<LocalTracksViewModel>()) }
 
-        composable<Destination.ApiTracks> {}
+        composable<Destination.ApiTracks> { BaseTracksView(viewModel = hiltViewModel<ApiTracksViewModel>()) }
     }
 }

@@ -4,7 +4,7 @@ import ru.crazerr.avitotest.data.local.TrackLocalDataSource
 import ru.crazerr.avitotest.domain.model.Track
 import ru.crazerr.avitotest.utils.paging.BasePagingSource
 
-class LocalTrackPagingSource(
+internal class LocalTrackPagingSource(
     private val trackLocalDataSource: TrackLocalDataSource,
     private val searchQuery: String?,
 ) : BasePagingSource<Track>() {

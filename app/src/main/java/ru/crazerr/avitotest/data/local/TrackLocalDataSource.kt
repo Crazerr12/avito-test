@@ -7,7 +7,7 @@ import kotlinx.coroutines.withContext
 import ru.crazerr.avitotest.domain.model.Track
 import javax.inject.Inject
 
-class TrackLocalDataSource @Inject constructor(private val context: Context) {
+internal class TrackLocalDataSource @Inject constructor(private val context: Context) {
     suspend fun getLocalTracks(
         page: Int,
         pageSize: Int,

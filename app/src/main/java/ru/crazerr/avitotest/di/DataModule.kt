@@ -8,13 +8,15 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import ru.crazerr.avitotest.data.local.TrackLocalDataSource
+import ru.crazerr.avitotest.data.remote.DeezerService
+import ru.crazerr.avitotest.data.remote.TrackRemoteDataSource
 import ru.crazerr.avitotest.data.repository.TrackRepositoryImpl
 import ru.crazerr.avitotest.domain.repository.TrackRepository
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class DataModule {
+internal abstract class DataModule {
 
     companion object {
         @Singleton
@@ -23,6 +25,14 @@ abstract class DataModule {
             @ApplicationContext context: Context
         ): TrackLocalDataSource {
             return TrackLocalDataSource(context = context)
+        }
+
+        @Singleton
+        @Provides
+        fun provideTrackRemoteDataSource(
+            deezerService: DeezerService
+        ): TrackRemoteDataSource {
+            return TrackRemoteDataSource(deezerService = deezerService)
         }
     }
 

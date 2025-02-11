@@ -6,4 +6,6 @@ import ru.crazerr.avitotest.domain.model.Track
 
 interface TrackRepository {
     fun getLocalTracks(searchQuery: String): Flow<PagingData<Track>>
+
+    fun getApiTracks(searchQuery: String): Flow<PagingData<Track>>
 }
