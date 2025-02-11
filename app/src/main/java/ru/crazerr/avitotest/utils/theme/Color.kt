@@ -1,4 +1,4 @@
-package ru.crazerr.avitotest.ui.theme
+package ru.crazerr.avitotest.utils.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,6 +1,5 @@
-package ru.crazerr.avitotest.ui.theme
+package ru.crazerr.avitotest.utils.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
