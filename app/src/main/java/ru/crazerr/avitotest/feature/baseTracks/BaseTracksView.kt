@@ -1,5 +1,6 @@
 package ru.crazerr.avitotest.feature.baseTracks
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -32,7 +33,11 @@ fun BaseTracksView(modifier: Modifier = Modifier, viewModel: BaseTracksViewModel
     Column(modifier = modifier) {
         SearchInput(searchInput = state.searchQuery, handleViewAction = viewModel::handleAction)
 
-        TrackPagingColumn(modifier = Modifier.weight(1f), state = state)
+        TrackPagingColumn(
+            modifier = Modifier.weight(1f),
+            state = state,
+            handleViewAction = viewModel::handleAction
+        )
     }
 }
 
@@ -70,6 +75,7 @@ private fun SearchInput(
 private fun TrackPagingColumn(
     modifier: Modifier = Modifier,
     state: BaseTracksState,
+    handleViewAction: (BaseTracksViewAction) -> Unit
 ) {
     val tracks = state.tracks.collectAsLazyPagingItems()
 
@@ -97,7 +103,14 @@ private fun TrackPagingColumn(
         items(tracks.itemCount) {
             val track = tracks[it]
             if (track != null) {
-                TrackListItem(track = track)
+                TrackListItem(
+                    modifier = Modifier.clickable(onClick = {
+                        handleViewAction(
+                            BaseTracksViewAction.ClickTrack(previewTrack = track)
+                        )
+                    }),
+                    previewTrack = track
+                )
             }
         }
     }

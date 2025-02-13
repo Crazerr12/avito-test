@@ -90,8 +90,8 @@ fun PagingLazyColumn(
 }
 
 @Composable
-private fun ScreenLoading() {
-    Box(modifier = Modifier.fillMaxSize()) {
+fun ScreenLoading(modifier: Modifier = Modifier) {
+    Box(modifier = modifier.fillMaxSize()) {
         CircularProgressIndicator(
             modifier = Modifier
                 .align(Alignment.Center)

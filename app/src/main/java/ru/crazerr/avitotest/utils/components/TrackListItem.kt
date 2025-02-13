@@ -1,5 +1,6 @@
 package ru.crazerr.avitotest.utils.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,13 +18,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import ru.crazerr.avitotest.R
-import ru.crazerr.avitotest.domain.model.Track
+import ru.crazerr.avitotest.domain.model.PreviewTrack
 
 private const val MAX_TITLE_NAME = 1
 private const val MAX_AUTHOR_NAME = 1
 
 @Composable
-fun TrackListItem(modifier: Modifier = Modifier, track: Track) {
+fun TrackListItem(modifier: Modifier = Modifier, previewTrack: PreviewTrack) {
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -32,7 +33,7 @@ fun TrackListItem(modifier: Modifier = Modifier, track: Track) {
     ) {
         AsyncImage(
             modifier = Modifier.height(50.dp),
-            model = track.image,
+            model = previewTrack.image,
             contentDescription = null,
             placeholder = painterResource(R.drawable.empty_image),
             error = painterResource(R.drawable.empty_image),
@@ -43,19 +44,19 @@ fun TrackListItem(modifier: Modifier = Modifier, track: Track) {
         Column(
             modifier = Modifier
                 .weight(1f)
-                .padding(end = 6.dp)
+                .height(50.dp)
+                .padding(end = 6.dp),
+            verticalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
-                text = track.title,
+                text = previewTrack.title,
                 maxLines = MAX_TITLE_NAME,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.titleSmall
             )
 
-            Spacer(modifier = Modifier.weight(1f))
-
             Text(
-                text = track.author,
+                text = previewTrack.author,
                 maxLines = MAX_AUTHOR_NAME,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.bodySmall

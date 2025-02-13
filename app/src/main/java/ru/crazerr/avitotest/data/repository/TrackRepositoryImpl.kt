@@ -8,6 +8,7 @@ import ru.crazerr.avitotest.data.local.TrackLocalDataSource
 import ru.crazerr.avitotest.data.paging.ApiTrackPagingSource
 import ru.crazerr.avitotest.data.paging.LocalTrackPagingSource
 import ru.crazerr.avitotest.data.remote.TrackRemoteDataSource
+import ru.crazerr.avitotest.domain.model.PreviewTrack
 import ru.crazerr.avitotest.domain.model.Track
 import ru.crazerr.avitotest.domain.repository.TrackRepository
 import javax.inject.Inject
@@ -18,7 +19,7 @@ internal class TrackRepositoryImpl @Inject constructor(
     private val trackLocalDataSource: TrackLocalDataSource,
     private val trackRemoteDataSource: TrackRemoteDataSource,
 ) : TrackRepository {
-    override fun getLocalTracks(searchQuery: String): Flow<PagingData<Track>> {
+    override fun getLocalTracks(searchQuery: String): Flow<PagingData<PreviewTrack>> {
         return Pager(
             config = PagingConfig(
                 pageSize = DEFAULT_PAGE_SIZE,
@@ -32,7 +33,7 @@ internal class TrackRepositoryImpl @Inject constructor(
         ).flow
     }
 
-    override fun getApiTracks(searchQuery: String): Flow<PagingData<Track>> {
+    override fun getApiTracks(searchQuery: String): Flow<PagingData<PreviewTrack>> {
         return Pager(
             config = PagingConfig(
                 pageSize = DEFAULT_PAGE_SIZE,
@@ -45,5 +46,17 @@ internal class TrackRepositoryImpl @Inject constructor(
                 )
             }
         ).flow
+    }
+
+    override suspend fun getLocalTrackById(id: Long): Result<Track> {
+        return trackLocalDataSource.getLocalTrackById(id = id)
+    }
+
+    override suspend fun getApiTrackById(id: Long): Result<Track> {
+        return trackRemoteDataSource.getTrackById(id = id)
+    }
+
+    override suspend fun getTrackQueueByChart(position: Int): Result<List<Long>> {
+        return trackRemoteDataSource.getTrackQueueByChart(position = position)
     }
 }

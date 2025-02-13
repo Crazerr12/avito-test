@@ -9,4 +9,7 @@ sealed interface Destination {
 
     @Serializable
     data object ApiTracks : Destination
+
+    @Serializable
+    data class Playback(val trackId: Long, val isLocal: Boolean, val position: Int) : Destination
 }

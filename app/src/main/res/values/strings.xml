@@ -4,6 +4,8 @@
     <string name="bottom_item_local">Скачанные</string>
     <string name="bottom_item_api">В облаке</string>
 
+    <string name="back_button_content_description">Назад</string>
+
     <string name="read_media_audio_required">Разрешение необходимо для показа вашей музыки</string>
 
     <string name="default_search_hint">Поиск</string>
@@ -14,4 +16,9 @@
     <string name="track_screen_error_item">Не удалось загрузить новые треки</string>
     <string name="track_screen_empty">Треков нет</string>
 
+    <!-- Playback screen -->
+    <string name="skip_next_content_description">Следующий трек</string>
+    <string name="skip_previous_content_description">Предыдущий трек</string>
+    <string name="play_content_description">Играть</string>
+    <string name="pause_content_description">Пауза</string>
 </resources>
